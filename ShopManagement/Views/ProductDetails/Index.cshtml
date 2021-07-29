@@ -1,0 +1,53 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<ShopManagement.Models.ProductDetails>
+@{
+    ViewBag.Title = "Product Details";
+}
+
+<section class="section__gradient section__form section__form-link">
+    <div class="container body-content">
+        
+        <h2 class="heading-secondary heading-secondary--white u-margin-top-huge">Product List</h2>
+
+        <div class="table__container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.First().productDetails.ProductId)</th>
+                        <th>@Html.DisplayNameFor(model => model.First().productDetails.ProductName)</th>
+                        <th>@Html.DisplayNameFor(model => model.First().categoryDetails.CategoryId)</th>
+                        <th>@Html.DisplayNameFor(model => model.First().categoryDetails.CategoryName)</th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.productDetails.ProductId</td>
+                        <td>@item.productDetails.ProductName</td>
+                        <td>@item.categoryDetails.CategoryId</td>
+                        <td>@item.categoryDetails.CategoryName</td>
+                    </tr>
+                }
+            </table>
+
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+        </div>
+
+
+    </div>
+</section>
+
+@*@section scripts {
+
+    <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
+
+
+}*@
+
